@@ -1,0 +1,21 @@
+.parallax {
+    background-image: url("../images/skane.jpg");
+    height: 1000px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+}
+
+header {
+    margin-top: 250px;
+}
+
+.glyphicon {
+    margin: 0 10px;
+}
