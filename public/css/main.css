@@ -1,10 +1,5 @@
-.parallax {
-    background-image: url("../images/skane.jpg");
-    height: 1000px;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+body, html {
+    height: 100%;
 }
 
 body {
@@ -12,9 +7,38 @@ body {
     text-align: center;
 }
 
-header {
-    margin-top: 250px;
+.parallax {
+    background-image: url("../images/skane.jpg");
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
+.navbar-default {
+    background-color: #8E5F38;
+    border-bottom: 2px solid #C29F45
+}
+
+.headline {
+    color: #C29F45;
+
+}
+
+.btn-default {
+    background-color: #C29F45;
+    margin: 15px 10px;
+    border: 1px solid #686D44;
+}
+/*
+.btn-default.hover {
+    background-color: #C29F45;
+    opacity: .5;
+
+}*/
+
+
 
 .glyphicon {
     margin: 0 10px;
