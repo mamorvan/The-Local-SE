@@ -2,17 +2,27 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <button id="scrape" class="btn btn-default">Scrape New Articles<span class="glyphicon glyphicon-list-alt"></span></button>
-        <button id= "saved" class="btn btn-default">View Saved Articles<span class="glyphicon glyphicon-star"></span></button>
+        <button id="saved" class="btn btn-default">View Saved Articles<span class="glyphicon glyphicon-star"></span></button>
     </div>
 </nav>
 
 <div class="parallax">
     <header>
         <h1>The Local Scraper</h1>
-        <h2><em>Get All Your Swedish News!</em></h2>
+        <h2><em>Get All Your Swedish News<br>(in english)!</em></h2>
     </header>
 </div>
-    <ul id="headline-container">
+    <ul>
+        <li id="message" class="panel panel-default">
+            <div class="panel-body">  
+                {{#if this.articleNum}}
+                <h3>You have {{this.articleNum}} new articles!</h3>
+                {{/if}}
+                {{#unless this.articleNum}}
+                <h3>No articles are currently displayed. Scrape to get new articles</h3>
+                {{/unless}}
+            </div>
+        </li>
         {{#each articles}}
         <li class="panel panel-default">
             <div class="panel-heading">
@@ -22,7 +32,7 @@
                 <div class="row">
                     <div class="col-sm-8">
                         {{#unless this.summary}}
-                        <p>There is no summary available</p>
+                        <p>Our Apologies - There is no summary available for this article.</p>
                         {{/unless}}
                         <p>{{this.summary}}</p>
                     </div>

@@ -1,9 +1,9 @@
 //scrape button
 $("#scrape").on("click", function(){
-    $.ajax ({
-        method: "GET",
-        url: "/scrape"
-    }).done(function(){
-       location.href = "/scrape";
-    });
+    location.href = "/scrape";
 });
+
+//saved button
+$("#saved").on("click", function(){
+    location.href = "/saved";
+})
