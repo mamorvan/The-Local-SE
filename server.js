@@ -3,8 +3,7 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var mongoose = require("mongoose");
 var path = require("path");
-var Notes = require("./models/notes.js");
-var Article = require("./models/articles.js");
+
 var routes = require("./routes/routes.js");
 
 //set up express

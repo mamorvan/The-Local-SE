@@ -7,3 +7,17 @@ $("#scrape").on("click", function(){
 $("#saved").on("click", function(){
     location.href = "/saved";
 })
+
+$(document).on("click", "#save", function(){
+    $.ajax({
+        type: "POST",
+        url: "/save",
+        data: {
+            headline: $(this).closest("li").find("h3").text(),
+            link: $(this).closest("li").find("a").attr("href"),
+            image: $(this).closest("li").find("img").attr("src")
+        }
+    }).done(function(data){
+        console.log(data);
+    })
+})

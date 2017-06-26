@@ -6,16 +6,14 @@ var articleSchema = new Schema ({
     headline: {
         type: String,
         required: true,
+        unique: true,
         trim: true
     },
     link: {
         type: String,
         required: true
     },
-    summary: {
-        type: String
-    },
-    imageLink: {
+    image: {
         type: String
     },
     notes: {

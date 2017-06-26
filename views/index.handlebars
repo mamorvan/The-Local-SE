@@ -26,7 +26,14 @@
         {{#each articles}}
         <li class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><a href="{{this.link}}">{{this.headline}}</a></h3>
+                <div class="row">
+                    <div class="col-sm-10">
+                    <h3 class="panel-title"><a id="link" href="{{this.link}}">{{this.headline}}</a></h3>
+                    </div>
+                    <div class="col-sm-2">
+                    <button id="save" class="btn btn-default" data="{{this.articleId}}">Save<span class="glyphicon glyphicon-folder-open"></span></button>
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
                 <div class="row">

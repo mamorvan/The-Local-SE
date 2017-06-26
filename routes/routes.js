@@ -1,7 +1,8 @@
 var express = require("express");
 var request = require("request");
 var cheerio = require("cheerio");
-
+var Article = require("../models/articles.js");
+var Notes = require("../models/notes.js");
 var router = express.Router();
 
 //render index page
@@ -30,6 +31,7 @@ router.route("/scrape")
 
         $(".panel").each(function(i, element) {
             articleNum = (i);
+            //get data from scraped articles to display using handlebars
             var headline = $(element).find("h2").text();
             var link = $(element).find("a").attr("href");
             var imgLink = $(element).find("a").find("img").attr("src");
@@ -40,7 +42,8 @@ router.route("/scrape")
                 headline: headline,
                 link: link,
                 image: imgLink,
-                summary: summary
+                summary: summary,
+                articleId: articleNum
             });
         });
         
@@ -52,16 +55,33 @@ router.route("/scrape")
     });
 });
 
-// //see all saved articles
-// router.route("/saved")
-// .get(function(req, res){
+//save an article
+router.route("/save")
+.post(function(req, res){
+    var newArticle = new Article(req.body);
+    console.log("routes.js 62: " + newArticle);
+    newArticle.save(function(error, doc){
+        if (error) {
+            console.log(error);
+        } else {
+            res.send("Article has been saved");
+        }
+    })
 
-// })
-// //save an article
-// .post(function(req, res){
-
-// })
-// //add or update a note to a saved article
+});
+//see all saved articles
+router.route("/saved")
+.get(function(req, res){
+    Article.find({}, function(error, doc){
+        if (error) { 
+            console.log(error);
+        } else {
+            console.log(doc);
+            res.json(doc);
+        }
+    })
+});
+//add or update a note to a saved article
 // .update(function(req, res) {
 
 // })
