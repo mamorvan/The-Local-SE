@@ -32,6 +32,7 @@ db.once("open", function(){
     console.log("mongoose connection successful!");
 });
 
+//set up routes
 app.use('/', routes);
 
 app.listen(port, function(){

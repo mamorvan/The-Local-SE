@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var noteSchema = new Schema ({
     notes: {
-        type: string,
+        type: String,
         trim: true
     }
 });

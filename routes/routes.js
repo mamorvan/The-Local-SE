@@ -35,28 +35,30 @@ router.route("/scrape")
                 summary: summary
             });
         });
-        //result is an array of objects
-        //pass to handlebars
+        var articlesObject = {
+            articles: result
+        };
+        res.render("index", articlesObject);
     });
 });
 
-//see all saved articles
-router.route("/saved")
-.get(function(req, res){
+// //see all saved articles
+// router.route("/saved")
+// .get(function(req, res){
 
-})
-//save an article
-.post(function(req, res){
+// })
+// //save an article
+// .post(function(req, res){
 
-})
-//add or update a note to a saved article
-.update(function(req, res) {
+// })
+// //add or update a note to a saved article
+// .update(function(req, res) {
 
-})
-//delete a saved article
-.delete(function(req, res){
+// })
+// //delete a saved article
+// .delete(function(req, res){
 
-});
+// });
 
 
 
