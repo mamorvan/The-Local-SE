@@ -4,7 +4,7 @@ body {
 
 .parallax {
     background-image: url("../images/skane.jpg");
-    height: 10000px;
+    height: 1000px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -32,15 +32,16 @@ body {
 .btn-default:hover {
     background-color: #C29F45;
     opacity: .5;
-
 }
 
 .glyphicon {
     margin: 0 10px;
 }
+
 #headline-container {
     margin: 80px 0;
 }
+
 .panel-default {
     background: #C29F45;
     width: 90%;

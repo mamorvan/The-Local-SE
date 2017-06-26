@@ -1,24 +1,62 @@
 var express = require("express");
+var request = require("request");
+var cheerio = require("cheerio");
+
 var router = express.Router();
 
+//render index page
 router.route("/")
 .get(function(req, res){
     res.render("index");
 });
-// .post(function(req, res){
 
-// });
+//show scraped articles
+router.route("/scrape")
+.get(function(req, res) {
+    request("https://www.thelocal.se/", function(error, response, html) {
 
-// router.route("/saved")
-// .get(function(req, res){
+        // Load the HTML into cheerio
+        var $ = cheerio.load(html);
 
-// })
-// .post(function(req, res){
+        // Make an empty array for saving our scraped info
+        var result = [];
 
-// })
-// .delete(function(req, res){
+        $(".panel").each(function(i, element) {
+            var headline = $(element).find("h2").text();
+            var link = $(element).find("a").attr("href");
+            var imgLink = $(element).find("a").find("img").attr("src");
+            //not all panels have a summary, if none - summary will have empty string
+            var summary = $(element).find("p").text();
 
-// });
+            result.push({ 
+                headline: headline,
+                link: link,
+                image: imgLink,
+                summary: summary
+            });
+        });
+        //result is an array of objects
+        //pass to handlebars
+    });
+});
+
+//see all saved articles
+router.route("/saved")
+.get(function(req, res){
+
+})
+//save an article
+.post(function(req, res){
+
+})
+//add or update a note to a saved article
+.update(function(req, res) {
+
+})
+//delete a saved article
+.delete(function(req, res){
+
+});
 
 
 
