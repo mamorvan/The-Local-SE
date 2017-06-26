@@ -11,12 +11,6 @@ router.route("/")
     res.render("index");
 });
 
-//render saved page
-router.route("/saved")
-.get(function(req, res){
-    res.render("saved");
-})
-
 //show scraped articles
 router.route("/scrape")
 .get(function(req, res) {
@@ -59,16 +53,17 @@ router.route("/scrape")
 router.route("/save")
 .post(function(req, res){
     var newArticle = new Article(req.body);
-    console.log("routes.js 62: " + newArticle);
     newArticle.save(function(error, doc){
         if (error) {
             console.log(error);
         } else {
+            console.log(doc);
             res.send("Article has been saved");
         }
     })
 
 });
+
 //see all saved articles
 router.route("/saved")
 .get(function(req, res){
@@ -76,10 +71,12 @@ router.route("/saved")
         if (error) { 
             console.log(error);
         } else {
-            console.log(doc);
-            res.json(doc);
+            var savedArticles = {
+                savedArticles: doc
+            };
+            res.render("saved", savedArticles);
         }
-    })
+    });
 });
 //add or update a note to a saved article
 // .update(function(req, res) {

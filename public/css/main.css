@@ -83,6 +83,6 @@ ul {
 li {
     text-align: left;
 }
-#save {
-    margin: 0;
+.btn-panel {
+    margin: 0 15px;
 }
