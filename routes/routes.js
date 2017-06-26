@@ -74,18 +74,28 @@ router.route("/saved")
             var savedArticles = {
                 savedArticles: doc
             };
+            console.log("routes.js 77: " + JSON.stringify(savedArticles));
             res.render("saved", savedArticles);
         }
     });
 });
+
+router.route("/saved/:id")
 //add or update a note to a saved article
 // .update(function(req, res) {
 
 // })
-// //delete a saved article
-// .delete(function(req, res){
-
-// });
+//delete a saved article
+.delete(function(req, res){
+    Article.findByIdAndRemove(req.params.id, function(error, doc){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("route.js 90 - article deleted");
+        }
+    })
+   
+});
 
 
 

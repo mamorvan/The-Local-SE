@@ -12,6 +12,16 @@
     </header>
 </div>
     <ul>
+        <li id="message" class="panel panel-default">
+            <div class="panel-body">  
+                {{#if this}}
+                <h3>Here are your saved articles!</h3>
+                {{/if}}
+                {{#unless this}}
+                <h3>You don't have any saved articles.  Check out the new articles and save some!</h3>
+                {{/unless}}
+            </div>
+        </li>
         {{#each savedArticles}}
         <li class="panel panel-default">
             <div class="panel-heading">
@@ -20,8 +30,8 @@
                     <h3 class="panel-title"><a id="link" href="{{this.link}}">{{this.headline}}</a></h3>
                     </div>
                     <div class="col-sm-4">
-                    <button id="note" class="btn btn-default btn-panel">Add a Note<span class="glyphicon glyphicon-pencil"></span></button>
-                    <button id="unsave" class="btn btn-default btn-panel">Unsave<span class="glyphicon glyphicon-trash"></span></button>
+                    <button id="note" class="btn btn-default btn-panel" data="{{this._id}}">Add a Note<span class="glyphicon glyphicon-pencil"></span></button>
+                    <button id="unsave" class="btn btn-default btn-panel" data="{{this._id}}">Unsave<span class="glyphicon glyphicon-trash"></span></button>
                     </div>
                 </div>
             </div>
