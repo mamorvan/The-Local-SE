@@ -30,7 +30,7 @@
                     <h3 class="panel-title"><a id="link" href="{{this.link}}">{{this.headline}}</a></h3>
                     </div>
                     <div class="col-sm-4">
-                    <button id="note" class="btn btn-default btn-panel" data="{{this._id}}">Add a Note<span class="glyphicon glyphicon-pencil"></span></button>
+                    <button id="note" class="btn btn-default btn-panel" data="{{this._id}}">Notes<span class="glyphicon glyphicon-pencil"></span></button>
                     <button id="unsave" class="btn btn-default btn-panel" data="{{this._id}}">Unsave<span class="glyphicon glyphicon-trash"></span></button>
                     </div>
                 </div>
@@ -49,9 +49,11 @@
                     <!--this div is hidden on page load, shows when notes button is clicked-->
                     <section id="notes{{this._id}}" class="col-sm-10 col-sm-offset-1">
                         <h2>Article Notes</h2>
+                        {{#if this.notes}}
                         <p class="well">{{this.notes}}</p>
+                        {{/if}}
                         <textarea class="form-control" rows="3"></textarea>
-                        <button id="save-notes" class="btn btn-default">Save Note</button>
+                        <button id="save-note" class="btn btn-default" data="{{this._id}}">Save Note</button>
                         <button id="close-notes" class="btn btn-default">Close Notes</button>
                     </section> 
                 </div>

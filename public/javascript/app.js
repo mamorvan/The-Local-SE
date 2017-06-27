@@ -29,8 +29,6 @@ $(document).on("click", "#unsave", function(){
     $.ajax({
         type: "DELETE",
         url: "/saved/" + thisID
-     }).done(function(){
-        location.href = "/saved";
      });
 });
 
@@ -42,7 +40,22 @@ $(document).on("click", "#note", function() {
     $.ajax({
         type: "GET",
         url: "/saved/" + thisID
-    })
+    });
+});
+
+//save note
+$(document).on("click", "#save-note", function() {
+    var thisID = $(this).attr("data");
+    $(this).closest("li").find("img").show();
+    $(this).closest("li").find("section").hide();
+    $.ajax({
+        type: "POST",
+        url: "saved/" + thisID,
+        data: {
+            note: $(this).closest("li").find("text-area").val()
+        }
+    });
+  
 });
 
 //close notes

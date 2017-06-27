@@ -83,7 +83,6 @@ router.route("/saved")
 router.route("/saved/:id")
 //get saved notes for specific article
 .get(function(req, res){
-
     Article.findOne({"_id": req.params.id})
     .populate("notes")
     .exec(function(error, doc){
@@ -94,10 +93,24 @@ router.route("/saved/:id")
         }
     })
 })
-//add or update a note to a saved article
-// .update(function(req, res) {
+//add a note to a saved article
+.post(function(req, res) {
+    var newNote = new Notes(req.body);
 
-// })
+    newNote.save(function(error, doc){
+        if (error) {
+            console.log(error);
+        } else {
+            Article.findOneAndUpdate({"_id": req.params.id}, { $push: {"notes": doc._id} }, { new: true }, function(error, doc) {
+                if (error) {
+                    console.log("routes.js 107: " + error);
+                } else {
+                    res.redirect("/saved");
+                }
+            });
+        }
+    });
+})
 //delete a saved article
 .delete(function(req, res){
     Article.findByIdAndRemove(req.params.id, function(error, doc){
