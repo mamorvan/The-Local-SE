@@ -81,6 +81,19 @@ router.route("/saved")
 });
 
 router.route("/saved/:id")
+//get saved notes for specific article
+.get(function(req, res){
+
+    Article.findOne({"_id": req.params.id})
+    .populate("notes")
+    .exec(function(error, doc){
+        if (error) {
+            console.log(error);
+        } else {
+            res.json(doc);
+        }
+    })
+})
 //add or update a note to a saved article
 // .update(function(req, res) {
 
@@ -96,7 +109,5 @@ router.route("/saved/:id")
     })
    
 });
-
-
 
 module.exports = router;

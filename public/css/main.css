@@ -86,3 +86,7 @@ li {
 .btn-panel {
     margin: 0 15px;
 }
+
+section {
+    display: none;
+}
