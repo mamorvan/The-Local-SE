@@ -96,6 +96,7 @@ router.route("/saved/:id")
 //add a note to a saved article
 .post(function(req, res) {
     var newNote = new Notes(req.body);
+    console.log("*****routes.js 99 req.body: " + JSON.stringify(req.body));
 
     newNote.save(function(error, doc){
         if (error) {
