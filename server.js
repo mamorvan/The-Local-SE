@@ -8,7 +8,7 @@ var routes = require("./routes/routes.js");
 
 //set up express
 var app = express();
-var port = 8080;
+var port = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname + "/public")));
 
@@ -21,7 +21,7 @@ app.set("view engine", "handlebars");
 //set up mongoose
 mongoose.Promise = Promise;
 
-mongoose.connect("mongodb://localhost/LocalScraperDB");
+mongoose.connect("mongodb://heroku_h7p84gdc:3v39jb9hc352euh55pkinjr9i@ds141082.mlab.com:41082/heroku_h7p84gdc");
 var db = mongoose.connection;
 
 db.on("error", function(error){
