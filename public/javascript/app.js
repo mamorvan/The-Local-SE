@@ -30,6 +30,7 @@ $("#saved").on("click", function(){
             method: "DELETE",
             url: "/saved/" + thisID
         });
+        location.href = "/saved";
     });
 
     $(document).ready(function() {
@@ -65,7 +66,7 @@ $("#saved").on("click", function(){
 
         $.ajax({
             method: "POST",
-            url: "/notes/" + thisID,
+            url: "/saved/" + thisID,
             data: {
                 note: note
             }
@@ -80,6 +81,8 @@ $("#saved").on("click", function(){
             method: "DELETE",
             url: "/notes/" + thisID
         });
+        $(this).closest("li").find("section").hide();
+        $(this).closest("li").find("img").show();
     });
 
     //close notes
