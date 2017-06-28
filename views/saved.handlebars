@@ -50,7 +50,9 @@
                     <section id="notes{{this._id}}" class="col-sm-10 col-sm-offset-1">
                         <h2>Article Notes</h2>
                         {{#if this.notes}}
-                        <p class="well">{{this.notes}}</p>
+                        {{#each this.notes}}
+                        <p class="well">{{this}}</p>
+                        {{/each}}
                         {{/if}}
                         <textarea id="note-text" class="form-control" rows="3"></textarea>
                         <button id="save-note" class="btn btn-default" data="{{this._id}}">Save Note</button>
