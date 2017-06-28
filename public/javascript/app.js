@@ -48,7 +48,7 @@ $(document).ready(function() {
             $("#notesgohere" + thisID).empty();
             //show existing notes for article
             for (var i = 0; i < data.notes.length; i++) {
-            $("#notesgohere" + thisID).append("<div class='row'><h2>Article Notes</h2> <p class='well col-sm-11'>" + data.notes[i].note + "</p><button class='btn btn-default trash-button' data=" + data.notes[i]._id + "><span class='glyphicon glyphicon-trash'></span></button></div>");
+            $("#notesgohere" + thisID).append("<div class='row'><p class='well col-sm-11'>" + data.notes[i].note + "</p><button class='btn btn-default trash-button' data=" + data.notes[i]._id + "><span class='glyphicon glyphicon-trash'></span></button></div>");
             }
         });
     });
