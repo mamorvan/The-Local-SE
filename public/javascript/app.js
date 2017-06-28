@@ -13,9 +13,7 @@ $(document).on("click", "#save", function(){
             link: $(this).closest("li").find("a").attr("href"),
             image: $(this).closest("li").find("img").attr("src"),
         }
-    }).done(function(data){
-        // console.log(data);
-    });
+    })
 });
 
 //go to saved articles
@@ -24,17 +22,16 @@ $("#saved").on("click", function(){
 });
 
 //unsave an article button
-    $(document).on("click", "#unsave", function(){
-        var thisID = $(this).attr("data");
-        $.ajax({
-            method: "DELETE",
-            url: "/saved/" + thisID
-        });
-        location.href = "/saved";
+$(document).on("click", "#unsave", function(){
+    var thisID = $(this).attr("data");
+    $.ajax({
+        method: "DELETE",
+        url: "/saved/" + thisID
     });
+    location.href = "/saved";
+});
 
-    $(document).ready(function() {
-        
+$(document).ready(function() {     
     //see notes
     $(document).on("click", "#note", function() {
         var thisID = $(this).attr("data");
@@ -53,12 +50,10 @@ $("#saved").on("click", function(){
         });
     });
 
-    //save note
+    //save a note
     $(document).on("click", "#save-note", function() {    
         var thisID = $(this).attr("data");
         console.log("save button thisID" + thisID);
-        // this doesn't work- returns blank- why?
-        // var note = $("#note-text").val().trim();
         var note = $(this).closest("section").find("textarea").val().trim();
         //clear out add notes area
         $(this).closest("section").find("textarea").val("");
@@ -75,10 +70,10 @@ $("#saved").on("click", function(){
         });
     });
 
-    //delete a specific note
+    //delete a note
     $(document).on("click", ".trash-button", function(){
         var thisID = $(this).attr("data");
-        console.log("app 79 trash button data:" + thisID);
+
         $.ajax({
             method: "DELETE",
             url: "/notes/" + thisID

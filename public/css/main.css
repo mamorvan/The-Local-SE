@@ -91,10 +91,10 @@ section {
     display: none;
 }
 
+/*--notes div--*/
 .trash-button {
     padding: 5px;
 }
-
 .well {
     overflow: scroll;
 }

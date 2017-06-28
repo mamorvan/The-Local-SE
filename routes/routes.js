@@ -73,7 +73,6 @@ router.route("/saved")
             var savedArticles = {
                 savedArticles: doc
             };
-            // console.log("routes.js 77: " + JSON.stringify(savedArticles));
             res.render("saved", savedArticles);
         }
     });
@@ -95,19 +94,15 @@ router.route("/saved/:id")
 //add a note to a saved article
 .post(function(req, res) {
     var newNote = new Notes(req.body);
-    console.log("req.body route 110 - back to this issue" + JSON.stringify(req.body) + "***" + req.params.id);
     newNote.save(function(error, doc){
         if (error) {
             console.log(error);
         } else {
-            console.log("routes 105 - note has been saved. doc is: " + doc);
-
             Article.findOneAndUpdate({"_id": req.params.id}, { $push: {"notes": doc._id} }, {new: true})
             .exec(function(error, doc) {
                 if (error) {
-                    console.log("routes.js 107: " + error);
+                    console.log(error);
                 } else {
-                    console.log("routes 111 - note has been added to article. doc is: " + doc);
                     res.send(doc);
                 }
             });
@@ -119,22 +114,17 @@ router.route("/saved/:id")
     Article.findByIdAndRemove(req.params.id, function(error, doc){
         if (error) {
             console.log(error);
-        } else {
-            //reload page here
         }
-    })  
+    }); 
 });
 
 router.route("/notes/:id")
 //delete a note
 .delete(function(req, res){
-    console.log('routes 131 req.params.id: ' + req.params.id);
     Notes.remove({_id: req.params.id}, function(error, doc){
         if (error) {
             console.log(error);
-        } else {
-            console.log("route.js 138 - note deleted and doc" + doc);
-        }
-    })
+        } 
+    });
 });
 module.exports = router;
