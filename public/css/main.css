@@ -90,3 +90,11 @@ li {
 section {
     display: none;
 }
+
+.trash-button {
+    padding: 5px;
+}
+
+.well {
+    overflow: scroll;
+}

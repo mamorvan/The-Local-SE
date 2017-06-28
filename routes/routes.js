@@ -57,7 +57,6 @@ router.route("/save")
         if (error) {
             console.log(error);
         } else {
-            console.log(doc);
             res.send("Article has been saved");
         }
     })
@@ -74,7 +73,7 @@ router.route("/saved")
             var savedArticles = {
                 savedArticles: doc
             };
-            console.log("routes.js 77: " + JSON.stringify(savedArticles));
+            // console.log("routes.js 77: " + JSON.stringify(savedArticles));
             res.render("saved", savedArticles);
         }
     });
@@ -93,11 +92,22 @@ router.route("/saved/:id")
         }
     })
 })
+//delete a saved article
+.delete(function(req, res){
+    Article.findByIdAndRemove(req.params.id, function(error, doc){
+        if (error) {
+            console.log(error);
+        } else {
+            //reload page here
+        }
+    })  
+});
+
+router.route("/notes/:id")
 //add a note to a saved article
 .post(function(req, res) {
     var newNote = new Notes(req.body);
-    console.log("*****routes.js 99 req.body: " + JSON.stringify(req.body));
-
+  
     newNote.save(function(error, doc){
         if (error) {
             console.log(error);
@@ -116,16 +126,15 @@ router.route("/saved/:id")
         }
     });
 })
-//delete a saved article
+//delete a note
 .delete(function(req, res){
-    Article.findByIdAndRemove(req.params.id, function(error, doc){
+    console.log('routes 131 req.params.id: ' + req.params.id);
+    Notes.remove({_id: req.params.id}, function(error, doc){
         if (error) {
             console.log(error);
         } else {
-            console.log("route.js 90 - article deleted");
+            console.log("route.js 138 - note deleted and doc" + doc);
         }
     })
-   
 });
-
 module.exports = router;

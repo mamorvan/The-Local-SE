@@ -14,7 +14,7 @@ $(document).on("click", "#save", function(){
             image: $(this).closest("li").find("img").attr("src"),
         }
     }).done(function(data){
-        console.log(data);
+        // console.log(data);
     });
 });
 
@@ -44,31 +44,41 @@ $("#saved").on("click", function(){
             url: "/saved/" + thisID
         }).done(function(data) {
             $("#notesgohere" + thisID).empty();
-            
-            console.log("app 46 - data from get notes for article" + JSON.stringify(data) + "data.notes.length" + data.notes.length);
+            //show existing notes for article
             for (var i = 0; i < data.notes.length; i++) {
-            $("#notesgohere" + thisID).append("<p class=well>" + data.notes[i].note + "</p>");
+            $("#notesgohere" + thisID).append("<div class='row'><p class='well col-sm-11'>" + data.notes[i].note + "</p><button class='btn btn-default trash-button' data=" + data.notes[i]._id + "><span class='glyphicon glyphicon-trash'></span></button></div>");
             }
         });
     });
 
     //save note
-    $(document).on("click", "#save-note", function() {
-       
+    $(document).on("click", "#save-note", function() {    
         var thisID = $(this).attr("data");
         // this doesn't work- returns blank- why?
         // var note = $("#note-text").val().trim();
         var note = $(this).closest("section").find("textarea").val().trim();
+        //clear out add notes area
         $(this).closest("section").find("textarea").val("");
+        //hide notes, show image
         $(this).closest("li").find("img").show();
         $(this).closest("li").find("section").hide();
 
         $.ajax({
             method: "POST",
-            url: "saved/" + thisID,
+            url: "/notes/" + thisID,
             data: {
                 note: note
             }
+        });
+    });
+
+    //delete a specific note
+    $(document).on("click", ".trash-button", function(){
+        var thisID = $(this).attr("data");
+        console.log("app 79 trash button data:" + thisID);
+        $.ajax({
+            method: "DELETE",
+            url: "/notes/" + thisID
         });
     });
 
