@@ -30,11 +30,7 @@ h1 {
     background-color: #C29F45;
     opacity: .5;
 }
-.btn-default:visited {
-    background-color: #C29F45;
-    border: 1px solid #686D44;
-    opacity: .5;
-}
+
 .glyphicon {
     margin: 0 10px;
 }

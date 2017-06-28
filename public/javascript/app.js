@@ -5,15 +5,18 @@ $("#scrape").on("click", function(){
 
 //save an article
 $(document).on("click", "#save", function(){
-    $.ajax({
-        method: "POST",
-        url: "/save",
-        data: {
-            headline: $(this).closest("li").find("h3").text(),
-            link: $(this).closest("li").find("a").attr("href"),
-            image: $(this).closest("li").find("img").attr("src"),
-        }
-    })
+      //fade out save button once clicked
+    $(this).fadeOut("slow", function(){
+        $.ajax({
+            method: "POST",
+            url: "/save",
+            data: {
+                headline: $(this).closest("li").find("h3").text(),
+                link: $(this).closest("li").find("a").attr("href"),
+                image: $(this).closest("li").find("img").attr("src"),
+            }
+        })
+    });
 });
 
 //go to saved articles
@@ -53,30 +56,32 @@ $(document).ready(function() {
     //save a note
     $(document).on("click", "#save-note", function() {    
         var thisID = $(this).attr("data");
-        console.log("save button thisID" + thisID);
-        var note = $(this).closest("section").find("textarea").val().trim();
-        //clear out add notes area
-        $(this).closest("section").find("textarea").val("");
-        //hide notes, show image
-        $(this).closest("li").find("img").show();
-        $(this).closest("li").find("section").hide();
+        
+            var note = $(this).closest("section").find("textarea").val().trim();
+            //clear out add notes area
+            $(this).closest("section").find("textarea").val("");
+            //hide notes, show image
+            $(this).closest("li").find("img").show();
+            $(this).closest("li").find("section").hide();
 
-        $.ajax({
-            method: "POST",
-            url: "/saved/" + thisID,
-            data: {
-                note: note
-            }
-        });
+            $.ajax({
+                method: "POST",
+                url: "/saved/" + thisID,
+                data: {
+                    note: note
+                }
+            });
     });
 
     //delete a note
     $(document).on("click", ".trash-button", function(){
         var thisID = $(this).attr("data");
-
-        $.ajax({
-            method: "DELETE",
-            url: "/notes/" + thisID
+        //fade out delete button once clicked
+        $(this).fadeOut("slow", function(){
+            $.ajax({
+                method: "DELETE",
+                url: "/notes/" + thisID
+            });
         });
     });
 
