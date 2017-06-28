@@ -6,4 +6,4 @@
 **You can save articles you find interesting.**  
 **You can make notes on saved articles and see other people's notes. There's some good ones!**
 
-:cake:[Try it here]:cake:(https://glacial-springs-94882.herokuapp.com/)
+:cake:[Try it here](https://glacial-springs-94882.herokuapp.com/):cake:
