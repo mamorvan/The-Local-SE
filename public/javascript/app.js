@@ -42,15 +42,24 @@ $("#saved").on("click", function(){
         $.ajax({
             method: "GET",
             url: "/saved/" + thisID
+        }).done(function(data) {
+            $("#notesgohere" + thisID).empty();
+            
+            console.log("app 46 - data from get notes for article" + JSON.stringify(data) + "data.notes.length" + data.notes.length);
+            for (var i = 0; i < data.notes.length; i++) {
+            $("#notesgohere" + thisID).append("<p class=well>" + data.notes[i].note + "</p>");
+            }
         });
     });
 
     //save note
     $(document).on("click", "#save-note", function() {
+       
         var thisID = $(this).attr("data");
         // this doesn't work- returns blank- why?
         // var note = $("#note-text").val().trim();
         var note = $(this).closest("section").find("textarea").val().trim();
+        $(this).closest("section").find("textarea").val("");
         $(this).closest("li").find("img").show();
         $(this).closest("li").find("section").hide();
 
