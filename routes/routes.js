@@ -102,11 +102,15 @@ router.route("/saved/:id")
         if (error) {
             console.log(error);
         } else {
-            Article.findOneAndUpdate({"_id": req.params.id}, {"notes": doc._id}, function(error, doc) {
+            console.log("routes 105 - note has been saved. doc is: " + doc);
+
+            Article.findOneAndUpdate({"_id": req.params.id}, {"notes": doc._id})
+            .exec(function(error, doc) {
                 if (error) {
                     console.log("routes.js 107: " + error);
                 } else {
-                    res.redirect("/saved");
+                    console.log("routes 111 - note has been added to article. doc is: " + doc);
+                    res.send(doc);
                 }
             });
         }

@@ -48,6 +48,8 @@ $("#saved").on("click", function(){
     //save note
     $(document).on("click", "#save-note", function() {
         var thisID = $(this).attr("data");
+        // this doesn't work- returns blank- why?
+        // var note = $("#note-text").val().trim();
         var note = $(this).closest("section").find("textarea").val().trim();
         $(this).closest("li").find("img").show();
         $(this).closest("li").find("section").hide();
