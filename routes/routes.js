@@ -95,7 +95,7 @@ router.route("/saved/:id")
 //add a note to a saved article
 .post(function(req, res) {
     var newNote = new Notes(req.body);
-    console.log("req.body route 110 - back to this issue" + JSON.stringify(req.body));
+    console.log("req.body route 110 - back to this issue" + JSON.stringify(req.body) + "***" + req.params.id);
     newNote.save(function(error, doc){
         if (error) {
             console.log(error);
@@ -126,7 +126,6 @@ router.route("/saved/:id")
 });
 
 router.route("/notes/:id")
-
 //delete a note
 .delete(function(req, res){
     console.log('routes 131 req.params.id: ' + req.params.id);

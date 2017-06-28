@@ -38,6 +38,7 @@ $("#saved").on("click", function(){
     //see notes
     $(document).on("click", "#note", function() {
         var thisID = $(this).attr("data");
+        console.log("app41 - thisID" + thisID);
         $(this).closest("li").find("img").hide();
         $(this).closest("li").find("section").show();
         $.ajax({
@@ -55,6 +56,7 @@ $("#saved").on("click", function(){
     //save note
     $(document).on("click", "#save-note", function() {    
         var thisID = $(this).attr("data");
+        console.log("save button thisID" + thisID);
         // this doesn't work- returns blank- why?
         // var note = $("#note-text").val().trim();
         var note = $(this).closest("section").find("textarea").val().trim();
