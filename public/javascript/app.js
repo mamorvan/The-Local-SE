@@ -6,7 +6,7 @@ $("#scrape").on("click", function(){
 //save an article
 $(document).on("click", "#save", function(){
     $.ajax({
-        type: "POST",
+        method: "POST",
         url: "/save",
         data: {
             headline: $(this).closest("li").find("h3").text(),
@@ -24,42 +24,45 @@ $("#saved").on("click", function(){
 });
 
 //unsave an article button
-$(document).on("click", "#unsave", function(){
-    var thisID = $(this).attr("data");
-    $.ajax({
-        type: "DELETE",
-        url: "/saved/" + thisID
-     });
-});
-
-//see notes
-$(document).on("click", "#note", function() {
-    var thisID = $(this).attr("data");
-    $(this).closest("li").find("img").hide();
-    $(this).closest("li").find("section").show();
-    $.ajax({
-        type: "GET",
-        url: "/saved/" + thisID
+    $(document).on("click", "#unsave", function(){
+        var thisID = $(this).attr("data");
+        $.ajax({
+            method: "DELETE",
+            url: "/saved/" + thisID
+        });
     });
-});
 
-//save note
-$(document).on("click", "#save-note", function() {
-    var thisID = $(this).attr("data");
-    $(this).closest("li").find("img").show();
-    $(this).closest("li").find("section").hide();
-    $.ajax({
-        type: "POST",
-        url: "saved/" + thisID,
-        data: {
-            note: $(this).closest("li").find("text-area").val()
-        }
+    $(document).ready(function() {
+        
+    //see notes
+    $(document).on("click", "#note", function() {
+        var thisID = $(this).attr("data");
+        $(this).closest("li").find("img").hide();
+        $(this).closest("li").find("section").show();
+        $.ajax({
+            method: "GET",
+            url: "/saved/" + thisID
+        });
     });
-  
-});
 
-//close notes
-$(document).on("click", "#close-notes", function() {
-    $(this).closest("li").find("img").show();
-    $(this).closest("li").find("section").hide();
+    //save note
+    $(document).on("click", "#save-note", function() {
+        var thisID = $(this).attr("data");
+        $(this).closest("li").find("img").show();
+        $(this).closest("li").find("section").hide();
+
+        $.ajax({
+            method: "POST",
+            url: "saved/" + thisID,
+            data: {
+                note: $("#notetext").val()
+            }
+        });
+    });
+
+    //close notes
+    $(document).on("click", "#close-notes", function() {
+        $(this).closest("li").find("img").show();
+        $(this).closest("li").find("section").hide();
+    });
 });
