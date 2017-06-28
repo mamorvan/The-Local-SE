@@ -83,8 +83,6 @@ $("#saved").on("click", function(){
             method: "DELETE",
             url: "/notes/" + thisID
         });
-        $(this).closest("li").find("section").hide();
-        $(this).closest("li").find("img").show();
     });
 
     //close notes
