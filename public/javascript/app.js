@@ -48,6 +48,7 @@ $("#saved").on("click", function(){
     //save note
     $(document).on("click", "#save-note", function() {
         var thisID = $(this).attr("data");
+        var note = $(this).closest("section").find("textarea").val().trim();
         $(this).closest("li").find("img").show();
         $(this).closest("li").find("section").hide();
 
@@ -55,7 +56,7 @@ $("#saved").on("click", function(){
             method: "POST",
             url: "saved/" + thisID,
             data: {
-                note: $("#notetext").val()
+                note: note
             }
         });
     });

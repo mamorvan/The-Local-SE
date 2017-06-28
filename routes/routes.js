@@ -102,7 +102,7 @@ router.route("/saved/:id")
         if (error) {
             console.log(error);
         } else {
-            Article.findOneAndUpdate({"_id": req.params.id}, { $push: {"notes": doc._id} }, { new: true }, function(error, doc) {
+            Article.findOneAndUpdate({"_id": req.params.id}, {"notes": doc._id}, function(error, doc) {
                 if (error) {
                     console.log("routes.js 107: " + error);
                 } else {
