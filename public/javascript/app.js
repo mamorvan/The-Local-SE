@@ -38,9 +38,11 @@ $(document).ready(function() {
     //see notes
     $(document).on("click", "#note", function() {
         var thisID = $(this).attr("data");
-        console.log("app41 - thisID" + thisID);
-        $(this).closest("li").find("img").hide();
-        $(this).closest("li").find("section").show();
+
+        $("#article-image" + thisID).hide();
+        $("#notes-section" + thisID).show();
+        // $(this).closest("li").find("img").hide();
+        // $(this).closest("li").find("section").show();
         $.ajax({
             method: "GET",
             url: "/saved/" + thisID
@@ -56,21 +58,21 @@ $(document).ready(function() {
     //save a note
     $(document).on("click", "#save-note", function() {    
         var thisID = $(this).attr("data");
+        var note = $("#note-text" + thisID).val().trim();
+        //empty note area
+        $("#note-text" + thisID).val("");
         
-            var note = $(this).closest("section").find("textarea").val().trim();
-            //clear out add notes area
-            $(this).closest("section").find("textarea").val("");
-            //hide notes, show image
-            $(this).closest("li").find("img").show();
-            $(this).closest("li").find("section").hide();
+        //hide notes, show image
+        $("#article-image" + thisID).show();
+        $("#notes-section" + thisID).hide();
 
-            $.ajax({
-                method: "POST",
-                url: "/saved/" + thisID,
-                data: {
-                    note: note
-                }
-            });
+        $.ajax({
+            method: "POST",
+            url: "/saved/" + thisID,
+            data: {
+                note: note
+            }
+        });
     });
 
     //delete a note
@@ -87,6 +89,7 @@ $(document).ready(function() {
 
     //close notes
     $(document).on("click", "#close-notes", function() {
+        //traverse DOM to find elements because no ID in data-attribute
         $(this).closest("li").find("img").show();
         $(this).closest("li").find("section").hide();
     });
